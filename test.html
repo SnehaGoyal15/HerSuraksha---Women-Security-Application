@@ -1,0 +1,29 @@
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+    emailjs.init("TkLwFBo0ac66ANj6T");
+})();
+
+function testEmail()
+{
+    console.log("TEST BUTTON CLICKED");
+
+    emailjs.send("her-suralh-service","template_4vlif4s",{
+        name: "Test",
+        time: "Now",
+        locationUrl: "Test Location",
+        to_email: "YOUR_EMAIL@gmail.com"
+    })
+    .then(function(res){
+        console.log("SUCCESS", res);
+        alert("Mail Sent");
+    })
+    .catch(function(err){
+        console.log("ERROR", err);
+        alert("Fail");
+    });
+}
+</script>
+
+<button onclick="testEmail()">TEST EMAIL</button>

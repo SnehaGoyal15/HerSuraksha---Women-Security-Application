@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Live Tracking - HerSuraksha</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Tracking Page CSS -->
+    <link rel="stylesheet" href="css/pages/track.css">
+    
+    <!-- Firebase Import Map -->
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loadingContainer" class="loading-container">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading live location...</div>
+</div>
+
+<!-- Map Container -->
+<div id="map"></div>
+
+<!-- Info Panel -->
+<div id="infoPanel" class="info-panel" style="display: none;">
+    <div class="status-bar">
+        <div class="live-dot"></div>
+        <div class="user-name" id="userName">Loading...</div>
+        <div class="duration-badge" id="durationBadge">🔴 LIVE</div>
+    </div>
+    
+    <div class="location-info">
+        <div class="info-row">
+            <span class="info-icon">📍</span>
+            <span id="locationStatus">Fetching location...</span>
+        </div>
+    </div>
+    
+    <div class="coordinates-box" id="coordinatesBox">
+        <span id="lat">Latitude: --</span>
+        <span id="lng">Longitude: --</span>
+        <span id="accuracy">Accuracy: --</span>
+    </div>
+    
+    <div class="last-update" id="lastUpdate">
+        Last update: --
+    </div>
+    
+    <div id="warningMsg"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script type="module">
+    import { initializeApp } from "firebase/app";
+    import { getFirestore, doc, onSnapshot } from "firebase/firestore";
+
+    // Firebase Config
+    const firebaseConfig = {
+        apiKey: "AIzaSyDbTUDZBPVhqZhNZ4B1KVDNc7crRS1BJEk",
+        authDomain: "hersuraksha.firebaseapp.com",
+        projectId: "hersuraksha",
+        storageBucket: "hersuraksha.firebasestorage.app",
+        messagingSenderId: "851245511690",
+        appId: "1:851245511690:web:f2e2942fb64cc9b9b5dbf3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Get session ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('id');
+
+    if (!sessionId) {
+        document.getElementById('loadingContainer').classList.add('hide');
+        document.getElementById('infoPanel').style.display = 'block';
+        document.getElementById('infoPanel').innerHTML = `
+            <div class="warning-message danger">
+                ❌ Invalid tracking link<br>
+                <small>Please check the link and try again.</small>
+            </div>
+        `;
+        throw new Error("No session ID");
+    }
+
+    // Initialize map
+    let map = L.map('map').setView([20.5937, 78.9629], 5);
+    
+    L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        attribution: '© Google Maps'
+    }).addTo(map);
+
+    let marker = null;
+    let pathLine = null;
+    let pathPoints = [];
+
+    // Custom marker icon
+    const customIcon = L.divIcon({
+        html: '<div class="marker-pulse"></div>',
+        iconSize: [20, 20],
+        className: 'custom-marker'
+    });
+
+    // Listen to real-time updates
+    const sessionRef = doc(db, "liveLocations", sessionId);
+    
+    onSnapshot(sessionRef, (docSnap) => {
+        // Hide loading
+        document.getElementById('loadingContainer').classList.add('hide');
+        document.getElementById('infoPanel').style.display = 'block';
+        
+        if (!docSnap.exists()) {
+            document.getElementById('infoPanel').innerHTML = `
+                <div class="warning-message danger">
+                    ❌ Tracking session not found<br>
+                    <small>The tracking link may have expired or is invalid.</small>
+                </div>
+            `;
+            return;
+        }
+
+        const data = docSnap.data();
+        
+        // Update user name
+        document.getElementById('userName').innerHTML = `🚨 ${data.userName || 'User'} needs help!`;
+        
+        // Update duration badge
+        const endTime = data.endTime?.toDate();
+        if (endTime && data.isActive) {
+            const now = new Date();
+            const hoursLeft = Math.max(0, (endTime - now) / (1000 * 60 * 60));
+            document.getElementById('durationBadge').innerHTML = `🔴 ${hoursLeft.toFixed(1)}h left`;
+            document.getElementById('durationBadge').classList.remove('ended');
+        } else if (!data.isActive) {
+            document.getElementById('durationBadge').innerHTML = `⚫ TRACKING ENDED`;
+            document.getElementById('durationBadge').classList.add('ended');
+        }
+        
+        // Update location if active
+        const currentLoc = data.currentLocation;
+        if (currentLoc && data.isActive) {
+            const lat = currentLoc.lat;
+            const lng = currentLoc.lng;
+            const accuracy = Math.round(currentLoc.accuracy || 0);
+            
+            // Update coordinates display
+            document.getElementById('lat').innerHTML = `Latitude: ${lat.toFixed(6)}`;
+            document.getElementById('lng').innerHTML = `Longitude: ${lng.toFixed(6)}`;
+            document.getElementById('accuracy').innerHTML = `Accuracy: ${accuracy}m`;
+            document.getElementById('locationStatus').innerHTML = '📍 Current Location';
+            
+            // Update last update time
+            if (currentLoc.timestamp) {
+                const updateTime = currentLoc.timestamp.toDate();
+                document.getElementById('lastUpdate').innerHTML = `🕐 Last update: ${updateTime.toLocaleTimeString()}`;
+            }
+            
+            // Center map on location
+            map.setView([lat, lng], 15);
+            
+            // Update or create marker
+            if (marker) {
+                marker.setLatLng([lat, lng]);
+            } else {
+                marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+            }
+            marker.bindPopup(`
+                <b>🔴 ${data.userName}</b><br>
+                Live location<br>
+                Updated: ${new Date().toLocaleTimeString()}
+            `).openPopup();
+            
+            // Draw path from history
+            if (data.locationHistory && data.locationHistory.length > 0) {
+                pathPoints = data.locationHistory.map(p => [p.lat, p.lng]).reverse();
+                
+                if (pathLine) {
+                    map.removeLayer(pathLine);
+                }
+                
+                pathLine = L.polyline(pathPoints, {
+                    color: '#ff4444',
+                    weight: 3,
+                    opacity: 0.6,
+                    lineJoin: 'round'
+                }).addTo(map);
+            }
+        } else if (!data.isActive) {
+            document.getElementById('locationStatus').innerHTML = '⚠️ Tracking has ended';
+            document.getElementById('coordinatesBox').innerHTML = `
+                <span>⚠️ This tracking session is no longer active.</span>
+                <span>The person has stopped sharing location.</span>
+            `;
+            
+            const warningMsg = document.getElementById('warningMsg');
+            warningMsg.innerHTML = `
+                <div class="warning-message danger">
+                    ⚠️ This tracking session has ended.<br>
+                    <small>The person is no longer sharing live location.</small>
+                </div>
+            `;
+        }
+        
+        // Show end time warning
+        if (endTime && data.isActive) {
+            const now = new Date();
+            const hoursLeft = (endTime - now) / (1000 * 60 * 60);
+            
+            if (hoursLeft <= 0.5 && hoursLeft > 0) {
+                const warningMsg = document.getElementById('warningMsg');
+                warningMsg.innerHTML = `
+                    <div class="warning-message danger" style="background:#ff4444; color:white;">
+                        ⚠️ Tracking ends in ${Math.round(hoursLeft * 60)} minutes!
+                    </div>
+                `;
+            }
+        }
+    });
+</script>
+</body>
+</html>
