@@ -1,0 +1,435 @@
+/* Import dashboard styles */
+@import url('dashboard.css');
+
+/* ===== CONTACTS PAGE SPECIFIC STYLES ===== */
+.contacts-container {
+    max-width: 1100px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+    min-height: calc(100vh - 250px);
+    width: 95%;
+}
+
+/* Priority Tip */
+.priority-tip {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 20px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #8B0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Contacts List */
+.contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+/* Contact Card - WHITE BACKGROUND */
+.contact-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    border-left: 6px solid #8B0000;
+    width: 100%;
+    position: relative;
+}
+
+.contact-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.2);
+}
+
+/* Priority 1 Contact Highlight - Subtle */
+.contact-card.priority-1 {
+    border-left-color: #D4AF37;
+    background: white;
+}
+
+/* Contact Info Wrapper (with priority number) */
+.contact-info-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+/* Priority Number - VISIBLE */
+.priority-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #8B0000;
+    background: #f0f0f0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contact-card.priority-1 .priority-number {
+    background: #D4AF37;
+    color: white;
+}
+
+/* Contact Info */
+.contact-info {
+    flex: 1;
+}
+
+.contact-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-phone {
+    font-size: 16px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-phone svg {
+    width: 18px;
+    height: 18px;
+    fill: #666;
+}
+
+.contact-email {
+    font-size: 14px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.contact-relation {
+    font-size: 14px;
+    color: #8B0000;
+    background: rgba(139, 0, 0, 0.1);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 8px;
+    width: fit-content;
+}
+
+/* Priority Buttons Container - VISIBLE */
+.priority-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-right: 15px;
+}
+
+.priority-up, .priority-down {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.priority-up:hover {
+    background: #8B0000;
+    color: white;
+    border-color: #8B0000;
+    transform: translateY(-2px);
+}
+
+.priority-down:hover {
+    background: #8B0000;
+    color: white;
+    border-color: #8B0000;
+    transform: translateY(2px);
+}
+
+/* Action Buttons Container */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Action Buttons */
+.action-btn {
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.call-btn {
+    background: #8B0000;
+}
+
+.call-btn:hover {
+    background: #660000;
+    transform: scale(1.1);
+}
+
+.msg-btn {
+    background: #2196F3;
+}
+
+.msg-btn:hover {
+    background: #1976D2;
+    transform: scale(1.1);
+}
+
+.edit-btn {
+    background: #FFA500;
+}
+
+.edit-btn:hover {
+    background: #FF8C00;
+    transform: scale(1.1);
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+    transform: scale(1.1);
+}
+
+/* Empty State */
+.no-contacts {
+    background: white;
+    border-radius: 16px;
+    padding: 50px;
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    width: 100%;
+}
+
+/* ADD CONTACT BUTTON */
+.add-contact-btn {
+    width: fit-content;
+    min-width: 220px;
+    padding: 12px 25px;
+    background: white;
+    border: 2px dashed #8B0000;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #8B0000;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto 0;
+}
+
+.add-contact-btn:hover {
+    background: #8B0000;
+    color: white;
+    border: 2px solid white;
+}
+
+.add-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Loading State */
+.loading {
+    text-align: center;
+    color: white;
+    padding: 40px;
+    font-size: 18px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .contacts-container {
+        margin-top: 80px;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .contact-card {
+        padding: 15px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .contact-info-wrapper {
+        width: 100%;
+    }
+    
+    .priority-number {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+    }
+    
+    .contact-name {
+        font-size: 18px;
+    }
+    
+    .contact-phone {
+        font-size: 14px;
+    }
+    
+    .priority-buttons {
+        flex-direction: row;
+        margin-right: 0;
+        margin-bottom: 10px;
+        gap: 10px;
+    }
+    
+    .priority-up, .priority-down {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .action-buttons {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .action-btn {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .action-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .add-contact-btn {
+        min-width: 200px;
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+    
+    .priority-tip {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-card {
+        padding: 15px;
+    }
+    
+    .priority-number {
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+        margin-right: 12px;
+    }
+    
+    .contact-name {
+        font-size: 16px;
+    }
+    
+    .action-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .add-contact-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .priority-tip {
+        font-size: 11px;
+    }
+}
+
+/* Large screens (1200px and above) */
+@media (min-width: 1200px) {
+    .contacts-container {
+        max-width: 1200px;
+    }
+    
+    .contact-card {
+        padding: 22px 35px;
+    }
+    
+    .priority-number {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .contact-name {
+        font-size: 22px;
+    }
+    
+    .contact-phone {
+        font-size: 18px;
+    }
+    
+    .action-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .action-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .priority-up, .priority-down {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
+}

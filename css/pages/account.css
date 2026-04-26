@@ -1,0 +1,358 @@
+/* Import dashboard styles */
+@import url('dashboard.css');
+
+/* ===== ACCOUNT PAGE SPECIFIC STYLES ===== */
+.account-container {
+    max-width: 700px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+    min-height: calc(100vh - 250px);
+}
+
+/* Greeting Section */
+.greeting-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.greeting-section h1 {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.greeting-section p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Profile Avatar */
+.profile-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar-container {
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 3px solid #8B0000;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(139, 0, 0, 0.8);
+    color: white;
+    padding: 8px 0;
+    font-size: 12px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+}
+
+.profile-avatar:hover .avatar-overlay {
+    transform: translateY(0);
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+}
+
+/* Details Card */
+.details-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.details-card h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+}
+
+.detail-value {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.edit-profile-btn {
+    width: 100%;
+    padding: 14px;
+    background: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+.edit-profile-btn:hover {
+    background: #660000;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(139,0,0,0.3);
+}
+
+/* Edit Form */
+.edit-form {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.edit-form h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: #8B0000;
+    box-shadow: 0 0 0 3px rgba(139,0,0,0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.save-btn {
+    flex: 1;
+    padding: 12px;
+    background: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.save-btn:hover {
+    background: #660000;
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 12px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #5a6268;
+}
+
+/* Fake Call Customization */
+.customize-section {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.customize-section h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.save-fakecall-btn {
+    width: 100%;
+    padding: 12px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.save-fakecall-btn:hover {
+    background: #1976D2;
+}
+
+.language-subtitle {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* Account Control Section */
+.account-control-section {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.account-control-section h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #8B0000;
+    padding-bottom: 10px;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.logout-btn {
+    flex: 1;
+    padding: 12px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background: #f57c00;
+}
+
+.delete-btn {
+    flex: 1;
+    padding: 12px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.warning-text {
+    font-size: 12px;
+    color: #dc3545;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .account-container {
+        margin-top: 80px;
+    }
+    
+    .greeting-section h1 {
+        font-size: 28px;
+    }
+    
+    .details-card, .edit-form, .customize-section, .account-control-section {
+        padding: 20px;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .form-actions, .control-buttons {
+        flex-direction: column;
+    }
+}

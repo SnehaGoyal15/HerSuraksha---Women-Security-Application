@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - HerSuraksha</title>
+    
+    <link rel="stylesheet" href="css/pages/dashboard.css">
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        setTimeout(() => {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init('TkLwFBo0ac66ANj6T');
+                console.log('EmailJS initialized');
+            } else {
+                console.error('EmailJS not loaded');
+            }
+        }, 1000);
+    </script>
+</head>
+<body>
+
+<div class="dashboard-header">
+    <div class="header-content">
+        <img src="assets/images/dash.png" class="header-logo" alt="Logo">
+        <div class="header-title" id="welcomeMessage"></div>
+        <div class="header-actions">
+            <div class="header-help" id="notesBtn">Notes</div>
+            <div class="header-help" id="calculatorBtn">Change</div>
+            <div class="header-help" id="helpBtn">Help?</div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-main">
+    <div class="cards-container">
+        <div class="action-card" id="sosCard">
+            <img src="assets/images/sos.png" class="card-image" alt="SOS">
+            <span class="card-title">SOS Emergency</span>
+            <span class="card-desc">Instant alert to all contacts</span>
+        </div>
+
+        <div class="action-card" id="fakeCallCard">
+            <img src="assets/images/fake-call.png" class="card-image" alt="Fake Call">
+            <span class="card-title">Fake Call</span>
+            <span class="card-desc">Simulate incoming call</span>
+        </div>
+
+        <div class="action-card" id="nearbyPlacesCard">
+            <img src="assets/images/safe.png" class="card-image" alt="Nearby Places">
+            <span class="card-title">Nearby Places</span>
+            <span class="card-desc">Find police stations, hospitals and ATMs near you</span>
+        </div>
+
+        <div class="action-card" id="safetyTimerCard">
+            <img src="assets/images/timer.png" class="card-image" alt="Safety Timer">
+            <span class="card-title">Safety Timer</span>
+            <span class="card-desc">Set your travel check-in and alert your top 4 contacts if you do not reach safely</span>
+        </div>
+
+        <div class="action-card" id="sirenCard">
+            <img src="assets/images/siren.png" class="card-image" alt="Emergency Siren">
+            <span class="card-title">Emergency Siren</span>
+            <span class="card-desc" id="sirenCardDesc">Tap once to start the loud siren and flashing warning screen. Tap again to stop it.</span>
+        </div>
+    </div>
+
+    <div class="helplines-panel">
+        <div class="helplines-header">
+            <h3>Quick Helplines</h3>
+            <p>Tap any number to open the dialer immediately.</p>
+        </div>
+        <div class="helplines-grid">
+            <button class="helpline-btn" data-number="112">
+                <span class="helpline-number">112</span>
+                <span class="helpline-label">National Emergency</span>
+            </button>
+            <button class="helpline-btn" data-number="100">
+                <span class="helpline-number">100</span>
+                <span class="helpline-label">Police</span>
+            </button>
+            <button class="helpline-btn" data-number="1091">
+                <span class="helpline-number">1091</span>
+                <span class="helpline-label">Women Helpline</span>
+            </button>
+            <button class="helpline-btn" data-number="181">
+                <span class="helpline-number">181</span>
+                <span class="helpline-label">Women Support</span>
+            </button>
+            <button class="helpline-btn" data-number="102">
+                <span class="helpline-number">102</span>
+                <span class="helpline-label">Ambulance</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="voice-trigger-panel" id="voiceTriggerPanel">
+        <div class="voice-trigger-header">
+            <div>
+                <h3>Voice Trigger</h3>
+                <p>Enable voice trigger and say the phrases below while this app is open.</p>
+            </div>
+            <span class="voice-trigger-badge" id="voiceTriggerBadge">OFF</span>
+        </div>
+        <div class="voice-trigger-body">
+            <div class="voice-trigger-card">
+                <span class="voice-trigger-label">SOS phrases</span>
+                <p>"help", "help me", "sos", "send location"</p>
+            </div>
+            <div class="voice-trigger-card">
+                <span class="voice-trigger-label">Siren phrases</span>
+                <p>"play sound", "play siren", "siren", "police sound"</p>
+            </div>
+        </div>
+        <div class="voice-trigger-settings">
+            <label class="voice-setting-item">
+                <input type="checkbox" id="voiceSosToggle" checked>
+                <span>Enable SOS phrases</span>
+            </label>
+            <label class="voice-setting-item">
+                <input type="checkbox" id="voiceSirenToggle" checked>
+                <span>Enable siren phrases</span>
+            </label>
+        </div>
+        <div class="voice-trigger-actions">
+            <button class="travel-primary-btn" id="voiceTriggerToggleBtn">Enable Voice Trigger</button>
+            <span class="voice-trigger-status" id="voiceTriggerStatus">Microphone is off.</span>
+        </div>
+    </div>
+
+    <div class="travel-status-card hidden" id="travelStatusCard">
+        <div class="travel-status-header">
+            <div>
+                <h3 id="travelStatusTitle">Travel Check-In Active</h3>
+                <p id="travelStatusSubtitle">We are tracking your safe arrival.</p>
+            </div>
+            <span class="travel-status-badge" id="travelStatusBadge">ACTIVE</span>
+        </div>
+        <div class="travel-status-body">
+            <div class="travel-stat">
+                <span class="travel-label">Destination</span>
+                <span class="travel-value" id="travelDestinationValue">--</span>
+            </div>
+            <div class="travel-stat">
+                <span class="travel-label">Time left</span>
+                <span class="travel-value" id="travelCountdownValue">--</span>
+            </div>
+        </div>
+        <div class="travel-status-actions">
+            <button class="travel-primary-btn" id="reachedSafeBtn">I Reached Safely</button>
+            <button class="travel-secondary-btn" id="cancelTravelBtn">Cancel Timer</button>
+        </div>
+    </div>
+
+    <div class="safety-tip">
+        Quick Tip: Always share your live location with trusted contacts when travelling alone.
+    </div>
+</div>
+
+<div class="travel-modal hidden" id="travelTimerModal">
+    <div class="travel-modal-card">
+        <div class="travel-modal-header">
+            <h2>Start Travel Check-In</h2>
+            <button class="travel-close-btn" id="closeTravelModalBtn" aria-label="Close">x</button>
+        </div>
+        <div class="travel-modal-body">
+            <label for="travelDestinationInput">Where are you going?</label>
+            <input type="text" id="travelDestinationInput" placeholder="For example: College">
+
+            <label for="travelDurationInput">How long do you usually take to reach?</label>
+            <div class="travel-duration-row">
+                <input type="number" id="travelDurationInput" min="1" max="300" placeholder="Enter time">
+                <span class="travel-duration-unit">minutes</span>
+            </div>
+
+            <p class="travel-note">After the main timer ends, the app waits 10 more minutes for your check-in. If you still do not respond, SOS will be sent to your top 4 contacts.</p>
+
+            <div class="travel-modal-actions">
+                <button class="travel-secondary-btn" id="cancelTravelSetupBtn">Cancel</button>
+                <button class="travel-primary-btn" id="startTravelTimerBtn">Start Timer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-footer">
+    <div class="footer-content">
+        <div class="icon-box active" id="homeBtn">
+            <img src="assets/images/home.png" class="footer-icon" alt="Home">
+            <span>Home</span>
+        </div>
+        <div class="icon-box" id="contactsBtn">
+            <img src="assets/images/contacts.png" class="footer-icon" alt="Contacts">
+            <span>Contacts</span>
+        </div>
+        <div class="icon-box" id="addBtn">
+            <img src="assets/images/add.png" class="footer-icon" alt="Add">
+            <span>Add</span>
+        </div>
+        <div class="icon-box" id="locationBtn">
+            <img src="assets/images/location.png" class="footer-icon" alt="Location">
+            <span>Location</span>
+        </div>
+        <div class="icon-box" id="policeBtn">
+            <img src="assets/images/safe.png" class="footer-icon" alt="Police">
+            <span>Police</span>
+        </div>
+        <div class="icon-box" id="accountBtn">
+            <img src="assets/images/acc.png" class="footer-icon" alt="Account">
+            <span>Account</span>
+        </div>
+    </div>
+</div>
+
+<audio id="emergencySirenAudio" src="assets/siren.mp3" preload="auto" loop></audio>
+
+<div class="siren-flash-screen hidden" id="sirenFlashScreen">
+    <div class="siren-flash-content">
+        <div class="siren-flash-title">EMERGENCY</div>
+        <div class="siren-flash-subtitle">Seek help nearby</div>
+        <button class="travel-secondary-btn" id="stopSirenOverlayBtn">Stop Siren</button>
+    </div>
+</div>
+
+<script type="module" src="js/utils/global-fake-call-watcher.js"></script>
+<script type="module" src="js/pages/dashboard.js"></script>
+
+</body>
+</html>

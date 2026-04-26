@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerSuraksha</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components/logo-animation.css">
+    
+    <!-- Firebase Import Map -->
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="app">
+        <!-- Logo Animation Container -->
+        <div id="logoContainer" class="logo-center">
+            <img src="assets/images/logo.png" alt="HerSuraksha" id="appLogo">
+        </div>
+        
+        <!-- Main Container (initially hidden) -->
+        <div id="mainContainer" class="hidden"></div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script type="module" src="js/utils/global-fake-call-watcher.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
+
+

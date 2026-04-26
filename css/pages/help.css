@@ -1,0 +1,398 @@
+/* Import dashboard styles */
+@import url('dashboard.css');
+
+/* ===== HELP PAGE SPECIFIC STYLES ===== */
+.help-container {
+    max-width: 1200px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+    min-height: calc(100vh - 250px);
+}
+
+.help-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.help-header h1 {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.help-header p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Help Grid */
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.help-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    border-left: 5px solid #8B0000;
+}
+
+.help-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(139,0,0,0.2);
+}
+
+.help-icon-img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    object-fit: contain;
+}
+
+.help-card h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.help-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* FAQ Section */
+.faq-section {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.faq-section h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.faq-question {
+    font-size: 18px;
+    font-weight: 600;
+    color: #8B0000;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.faq-answer {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    padding-left: 20px;
+}
+
+/* ===== FEEDBACK SECTION ===== */
+.feedback-section {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.feedback-section h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.feedback-section > p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.feedback-box {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#feedbackText {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+}
+
+#feedbackText:focus {
+    outline: none;
+    border-color: #8B0000;
+    box-shadow: 0 0 0 3px rgba(139,0,0,0.1);
+}
+
+.rating-container {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.rating-container p {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    opacity: 0.5;
+}
+
+.star:hover {
+    transform: scale(1.2);
+}
+
+.star.selected {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px #FFD700);
+}
+
+.rating-value {
+    color: #8B0000;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.feedback-btn {
+    background: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: block;
+    margin: 0 auto 15px;
+    width: fit-content;
+}
+
+.feedback-btn:hover {
+    background: #660000;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(139,0,0,0.3);
+}
+
+.feedback-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.feedback-message {
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    min-height: 40px;
+}
+
+.feedback-message.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.feedback-message.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Support Section - GRADIENT FIXED */
+.support-section {
+    background: linear-gradient(145deg, #ac2020, #c04e1e, #b3470c);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.support-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.support-section p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.support-section a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+}
+
+.support-section a:hover {
+    border-bottom-color: white;
+}
+
+/* Footer Full Width Fix */
+.dashboard-footer {
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .help-container {
+        margin-top: 80px;
+    }
+    
+    .help-header h1 {
+        font-size: 28px;
+    }
+    
+    .help-header p {
+        font-size: 16px;
+    }
+    
+    .help-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .faq-section {
+        padding: 25px;
+    }
+    
+    .faq-section h2 {
+        font-size: 24px;
+    }
+    
+    .feedback-section {
+        padding: 25px;
+    }
+    
+    .feedback-section h2 {
+        font-size: 24px;
+    }
+    
+    .star {
+        font-size: 25px;
+    }
+    
+    .feedback-btn {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+    
+    .support-section {
+        padding: 30px 20px;
+    }
+    
+    .support-section h2 {
+        font-size: 24px;
+    }
+    
+    .footer-content {
+        max-width: 100%;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .help-header h1 {
+        font-size: 24px;
+    }
+    
+    .faq-question {
+        font-size: 16px;
+    }
+    
+    .faq-answer {
+        font-size: 14px;
+    }
+    
+    .feedback-section {
+        padding: 20px;
+    }
+    
+    .feedback-section h2 {
+        font-size: 22px;
+    }
+    
+    .star-rating {
+        gap: 5px;
+    }
+    
+    .star {
+        font-size: 22px;
+    }
+    
+    #feedbackText {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .support-section p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 375px) {
+    .star {
+        font-size: 20px;
+    }
+    
+    .feedback-btn {
+        padding: 10px 25px;
+        font-size: 15px;
+        width: 100%;
+    }
+}

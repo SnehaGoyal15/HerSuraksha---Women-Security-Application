@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts - HerSuraksha</title>
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="css/pages/contacts.css">
+</head>
+<body>
+
+<!-- HEADER WITH LOGO & PERSONALIZED MESSAGE -->
+<div class="dashboard-header">
+    <div class="header-content">
+        <img src="assets/images/dash.png" class="header-logo" alt="Logo">
+        <div class="header-title" id="welcomeMessage">
+            <!-- Personalized message from JS: "Hi Sneha, your emergency contacts" -->
+        </div>
+        <!-- 🔥 FIXED: Added id="helpBtn" -->
+        <div class="header-help" id="helpBtn">Help?</div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT - CONTACTS LIST -->
+<div class="contacts-container">
+    <div class="priority-tip">
+        <span>Use arrow to set priority</span>
+    </div>
+    
+    <div id="contactsList" class="contacts-list">
+        <!-- Contacts will be loaded here dynamically -->
+        <div class="loading">Loading contacts...</div>
+    </div>
+    
+    <!-- ADD CONTACT BUTTON -->
+    <button id="addNewContact" class="add-contact-btn">
+        <img src="assets/images/add.png" class="add-icon" alt="Add">
+        <span>Add New Contact</span>
+    </button>
+</div>
+
+<!-- FOOTER WITH 5 ICONS -->
+<div class="dashboard-footer">
+    <div class="footer-content">
+        <div class="icon-box" id="homeBtn">
+            <img src="assets/images/home.png" class="footer-icon" alt="Home">
+            <span>Home</span>
+        </div>
+        <div class="icon-box active" id="contactsBtn">
+            <img src="assets/images/contacts.png" class="footer-icon" alt="Contacts">
+            <span>Contacts</span>
+        </div>
+        <div class="icon-box" id="addBtn">
+            <img src="assets/images/add.png" class="footer-icon" alt="Add">
+            <span>Add</span>
+        </div>
+        <div class="icon-box" id="locationBtn">
+            <img src="assets/images/location.png" class="footer-icon" alt="Location">
+            <span>Location</span>
+        </div>
+        <div class="icon-box" id="accountBtn">
+            <img src="assets/images/acc.png" class="footer-icon" alt="Account">
+            <span>Account</span>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="js/utils/global-fake-call-watcher.js"></script>
+<script type="module" src="js/pages/contacts.js"></script>
+</body>
+</html>
+
+

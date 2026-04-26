@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Places - HerSuraksha</title>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/pages/nearby-places.css">
+</head>
+<body>
+
+<div class="dashboard-header">
+    <div class="header-content">
+        <img src="assets/images/dash.png" class="header-logo" alt="Logo">
+        <div class="header-title" id="welcomeMessage">Your Nearby Safety Places</div>
+        <div class="header-help" id="helpBtn">Help?</div>
+    </div>
+</div>
+
+<main class="nearby-main">
+    <section class="intro-card">
+        <h1>Your Nearby Safety Places</h1>
+        <p>Choose a category below. We will first try to fetch nearby places using Overpass, and if that fails we will show your saved backup places.</p>
+    </section>
+
+    <section class="category-grid">
+        <button class="category-btn active" data-category="police">Police Stations</button>
+        <button class="category-btn" data-category="hospital">Hospitals</button>
+        <button class="category-btn" data-category="atm">ATMs</button>
+        <button class="category-btn" data-category="saved">Your Saved Places</button>
+    </section>
+
+    <section class="action-row">
+        <button class="primary-btn" id="addPlaceBtn">Add Your Place</button>
+    </section>
+
+    <section class="feedback-strip hidden" id="statusMessage"></section>
+
+    <section class="results-section">
+        <div id="placesList" class="places-list">
+            <div class="loading-card">Loading nearby places...</div>
+        </div>
+    </section>
+</main>
+
+<div class="modal hidden" id="addPlaceModal">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h2>Add Your Place</h2>
+            <button class="close-btn" id="closeModalBtn" aria-label="Close">x</button>
+        </div>
+
+        <div class="modal-body">
+            <label for="placeCategory">Save under</label>
+            <select id="placeCategory">
+                <option value="">Select category</option>
+                <option value="police">Police Stations</option>
+                <option value="hospital">Hospitals</option>
+                <option value="atm">ATMs</option>
+                <option value="saved">Your Saved Places</option>
+            </select>
+
+            <label for="placeName">Place Name</label>
+            <input type="text" id="placeName" placeholder="For example: Angela's House">
+
+            <label for="placeLink">Google Maps Link</label>
+            <textarea id="placeLink" rows="4" placeholder="Paste the Google Maps link here"></textarea>
+
+            <div class="modal-actions">
+                <button class="secondary-btn" id="openMapsBtn">Open Google Maps</button>
+                <button class="primary-btn" id="savePlaceBtn">Save Place</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="dashboard-footer">
+    <div class="footer-content">
+        <div class="icon-box" id="homeBtn">
+            <img src="assets/images/home.png" class="footer-icon" alt="Home">
+            <span>Home</span>
+        </div>
+        <div class="icon-box" id="contactsBtn">
+            <img src="assets/images/contacts.png" class="footer-icon" alt="Contacts">
+            <span>Contacts</span>
+        </div>
+        <div class="icon-box" id="addBtn">
+            <img src="assets/images/add.png" class="footer-icon" alt="Add">
+            <span>Add</span>
+        </div>
+        <div class="icon-box" id="locationBtn">
+            <img src="assets/images/location.png" class="footer-icon" alt="Location">
+            <span>Location</span>
+        </div>
+        <div class="icon-box" id="accountBtn">
+            <img src="assets/images/acc.png" class="footer-icon" alt="Account">
+            <span>Account</span>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="js/utils/global-fake-call-watcher.js"></script>
+<script type="module" src="js/pages/nearby-places.js"></script>
+</body>
+</html>

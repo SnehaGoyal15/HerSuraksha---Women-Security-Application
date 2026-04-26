@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - HerSuraksha</title>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/pages/notes.css">
+</head>
+<body>
+    <div class="dashboard-header">
+        <div class="header-content">
+            <img src="assets/images/dash.png" class="header-logo" alt="Logo">
+            <div class="header-title" id="welcomeMessage">Emergency Notes</div>
+            <div class="header-actions">
+                <div class="header-help" id="calculatorBtn">Change</div>
+                <div class="header-help" id="helpBtn">Help?</div>
+            </div>
+        </div>
+    </div>
+
+    <main class="notes-main">
+        <section class="notes-card">
+            <h1>Emergency Notes</h1>
+            <p class="notes-subtitle">Save quick details like a vehicle number, location clue, or suspect description. Each saved note appears below as its own card.</p>
+
+            <label for="emergencyNotesInput">Your notes</label>
+            <textarea id="emergencyNotesInput" rows="12" placeholder="Example: White car DL 8C XXXX near college gate..."></textarea>
+
+            <div class="notes-footer">
+                <span class="notes-status" id="notesStatus">Notes are ready to save.</span>
+                <div class="notes-actions">
+                    <button class="notes-secondary-btn" id="clearNotesBtn">Clear</button>
+                    <button class="notes-primary-btn" id="saveNotesBtn">Save Notes</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="notes-card notes-history-card">
+            <div class="notes-history-header">
+                <h2>Saved Notes</h2>
+                <p>Your saved notes stay visible here for quick access.</p>
+            </div>
+            <div class="notes-list" id="savedNotesList">
+                <div class="notes-empty">No saved notes yet. Write one above and tap Save Notes.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="icon-box" id="homeBtn">
+                <img src="assets/images/home.png" class="footer-icon" alt="Home">
+                <span>Home</span>
+            </div>
+            <div class="icon-box" id="contactsBtn">
+                <img src="assets/images/contacts.png" class="footer-icon" alt="Contacts">
+                <span>Contacts</span>
+            </div>
+            <div class="icon-box" id="addBtn">
+                <img src="assets/images/add.png" class="footer-icon" alt="Add">
+                <span>Add</span>
+            </div>
+            <div class="icon-box" id="locationBtn">
+                <img src="assets/images/location.png" class="footer-icon" alt="Location">
+                <span>Location</span>
+            </div>
+            <div class="icon-box" id="accountBtn">
+                <img src="assets/images/acc.png" class="footer-icon" alt="Account">
+                <span>Account</span>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/utils/global-fake-call-watcher.js"></script>
+    <script type="module" src="js/pages/notes.js"></script>
+</body>
+</html>

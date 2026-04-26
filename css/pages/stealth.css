@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #e4e6eb 0%, #c9cdd4 100%);
+    display: flex;
+}
+
+.calculator-shell {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+.calculator-app {
+    width: 100%;
+    min-height: 100vh;
+    background: #1f2228;
+    border-radius: 0;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator-topbar {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 18px;
+    letter-spacing: 0.04em;
+}
+
+.calculator-display {
+    width: 100%;
+    min-height: 28vh;
+    background: #2b3139;
+    border: none;
+    border-radius: 22px;
+    margin-bottom: 18px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+    color: white;
+    text-align: right;
+}
+
+.calculator-expression {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    word-break: break-all;
+}
+
+.calculator-result {
+    min-height: 22px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 16px;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    flex: 1;
+}
+
+.calc-btn {
+    border: none;
+    border-radius: 18px;
+    min-height: 72px;
+    background: #343b45;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+}
+
+.calc-btn:active {
+    transform: scale(0.97);
+}
+
+.calc-btn-muted {
+    background: #4a525e;
+}
+
+.calc-btn-operator,
+.calc-btn-equals {
+    background: #f08d22;
+}
+
+.calc-btn-wide {
+    grid-column: span 2;
+}
+
+@media (max-width: 420px) {
+    .calculator-app {
+        padding: 14px;
+    }
+
+    .calculator-expression {
+        font-size: 34px;
+    }
+
+    .calc-btn {
+        min-height: 60px;
+        font-size: 22px;
+    }
+}

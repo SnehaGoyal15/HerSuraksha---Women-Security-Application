@@ -1,0 +1,252 @@
+/* Tracking Page Styles - HerSuraksha Theme */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1a1a2e;
+    overflow: hidden;
+}
+
+/* Map Container */
+#map {
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Info Panel - Same style as dashboard cards */
+.info-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+/* Status Bar */
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.live-dot {
+    width: 12px;
+    height: 12px;
+    background: #ff4444;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
+.user-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+}
+
+.duration-badge {
+    background: linear-gradient(135deg, #8B0000, #cc0000);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.duration-badge.ended {
+    background: #6c757d;
+}
+
+/* Location Info */
+.location-info {
+    margin-bottom: 12px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.info-icon {
+    font-size: 18px;
+    width: 24px;
+}
+
+.coordinates-box {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 12px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.coordinates-box span {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.coordinates-box span:last-child {
+    margin-bottom: 0;
+}
+
+.last-update {
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Warning Message */
+.warning-message {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.warning-message.danger {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Loading State */
+.loading-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2000;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #8B0000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: white;
+    font-size: 14px;
+}
+
+/* Hide loading when done */
+.loading-container.hide {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .info-panel {
+        padding: 15px;
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+    }
+    
+    .user-name {
+        font-size: 14px;
+    }
+    
+    .info-row {
+        font-size: 12px;
+    }
+    
+    .coordinates-box {
+        font-size: 10px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-panel {
+        padding: 12px;
+    }
+    
+    .status-bar {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .duration-badge {
+        font-size: 9px;
+        padding: 4px 10px;
+    }
+}
+
+/* Custom Map Marker */
+.custom-marker {
+    background: transparent;
+}
+
+.marker-pulse {
+    width: 20px;
+    height: 20px;
+    background: #ff4444;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
+    animation: markerPulse 1.5s infinite;
+}
+
+@keyframes markerPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 15px rgba(255, 68, 68, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
+    }
+}

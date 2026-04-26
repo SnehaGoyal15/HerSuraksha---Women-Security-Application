@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Contact - HerSuraksha</title>
+
+<script type="importmap">
+{
+    "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+        "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+    }
+}
+</script>
+
+<link rel="stylesheet" href="css/pages/add-contact.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="dashboard-header">
+<div class="header-content">
+
+<img src="assets/images/dash.png" class="header-logo">
+
+<div class="header-title" id="welcomeMessage"></div>
+
+<div class="header-help" id="helpBtn">Help?</div>
+
+</div>
+</div>
+
+<!-- ADD CONTACT FORM -->
+<div class="add-contact-container">
+
+<div class="add-contact-card">
+
+<h2 class="form-title">Add Emergency Contact</h2>
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" id="contactName" placeholder="Name">
+</div>
+
+<div class="form-group">
+<label>Phone Number</label>
+<input type="tel" id="contactPhone" placeholder="1234567890">
+</div>
+
+<div class="form-group">
+<label>Relation</label>
+<input type="text" id="contactRelation" placeholder="Mother / Friend">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" id="contactEmail" placeholder="name@email.com">
+</div>
+
+<button id="saveContact" class="save-btn">Save Contact</button>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="dashboard-footer">
+
+<div class="footer-content">
+
+<div class="icon-box" id="homeBtn">
+<img src="assets/images/home.png" class="footer-icon">
+<span>Home</span>
+</div>
+
+<div class="icon-box" id="contactsBtn">
+<img src="assets/images/contacts.png" class="footer-icon">
+<span>Contacts</span>
+</div>
+
+<div class="icon-box active" id="addBtn">
+<img src="assets/images/add.png" class="footer-icon">
+<span>Add</span>
+</div>
+
+<div class="icon-box" id="locationBtn">
+<img src="assets/images/location.png" class="footer-icon">
+<span>Location</span>
+</div>
+
+<div class="icon-box" id="accountBtn">
+<img src="assets/images/acc.png" class="footer-icon">
+<span>Account</span>
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="js/utils/global-fake-call-watcher.js"></script>
+<script type="module" src="js/pages/add-contact.js"></script>
+
+</body>
+</html>
+
+

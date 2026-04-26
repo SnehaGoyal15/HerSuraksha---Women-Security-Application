@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake Call</title>
+<link rel="stylesheet" href="css/pages/fake-call.css">
+</head>
+<body>
+
+<div class="scheduler-screen" id="schedulerScreen">
+    <div class="scheduler-card">
+        <h1>Schedule Fake Call</h1>
+        <p class="scheduler-subtitle">Choose when the incoming call should appear.</p>
+
+        <div class="caller-preview">
+            <img src="assets/images/user.png" class="preview-photo" alt="Caller">
+            <div>
+                <div class="preview-label">Caller</div>
+                <div class="preview-name" id="previewCallerName">Mom</div>
+                <div class="preview-number" id="previewCallerNumber">+91 9876543210</div>
+            </div>
+        </div>
+
+        <div class="schedule-options">
+            <button class="schedule-option active" data-delay="30">After 30 sec</button>
+            <button class="schedule-option" data-delay="60">After 1 min</button>
+            <button class="schedule-option" data-delay="custom">Custom</button>
+        </div>
+
+        <div class="custom-delay hidden" id="customDelayWrap">
+            <label for="customDelayInput">Custom delay in seconds</label>
+            <input type="number" id="customDelayInput" min="5" max="600" placeholder="Enter seconds">
+        </div>
+
+        <div class="scheduler-actions">
+            <button class="start-btn" id="startFakeCallBtn">Start Fake Call</button>
+            <button class="cancel-btn" id="cancelScheduleBtn">Cancel</button>
+        </div>
+
+        <div class="schedule-status hidden" id="scheduleStatus"></div>
+    </div>
+</div>
+
+<div class="incoming-screen hidden" id="incomingScreen">
+    <div class="call-container">
+        <img src="assets/images/user.png" class="caller-photo" alt="Caller">
+        <div class="caller-label">Incoming call</div>
+        <div class="caller-name" id="callerName">Mom</div>
+        <div class="caller-number" id="callerNumber">+91 9876543210</div>
+        <div class="buttons">
+            <img src="assets/images/accept.png" class="accept-btn" id="acceptBtn" alt="Accept">
+            <img src="assets/images/decline.png" class="decline-btn" id="declineBtn" alt="Decline">
+        </div>
+    </div>
+</div>
+
+<audio id="ringtone" loop>
+    <source src="assets/ringtone.mp3" type="audio/mpeg">
+</audio>
+
+<script type="module" src="js/pages/fake-call.js"></script>
+</body>
+</html>
+
+

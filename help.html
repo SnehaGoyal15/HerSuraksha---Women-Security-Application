@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - HerSuraksha</title>
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+                "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="css/pages/help.css">
+</head>
+<body>
+
+<div class="dashboard-header">
+    <div class="header-content">
+        <img src="assets/images/dash.png" class="header-logo" alt="Logo">
+        <div class="header-title" id="welcomeMessage">Help & Support</div>
+        <div class="header-help" id="helpBtn">Help?</div>
+    </div>
+</div>
+
+<div class="help-container">
+    <div class="help-header">
+        <h1 id="greetingMessage"></h1>
+        <p>Everything you need to know about HerSuraksha</p>
+    </div>
+    
+    <div class="help-grid">
+        <div class="help-card">
+            <img src="assets/images/sos.png" class="help-icon-img" alt="SOS">
+            <h3>SOS Emergency</h3>
+            <p>Send SOS alerts with your live location and start live tracking for 8 hours. After alerts are sent, the app also tries to call your top priority contact.</p>
+        </div>
+        
+        <div class="help-card">
+            <img src="assets/images/fake-call.png" class="help-icon-img" alt="Fake Call">
+            <h3>Fake Call</h3>
+            <p>Schedule a fake incoming call after 30 seconds, 1 minute, or a custom delay. Customize the caller name and ringtone from Account.</p>
+        </div>
+        
+        <div class="help-card">
+            <img src="assets/images/location.png" class="help-icon-img" alt="Location">
+            <h3>Live Location</h3>
+            <p>Open your current location in Google Maps and let the app use location for SOS, Nearby Places and live tracking.</p>
+        </div>
+
+        <div class="help-card">
+            <img src="assets/images/safe.png" class="help-icon-img" alt="Nearby Places">
+            <h3>Nearby Places</h3>
+            <p>Find nearby police stations, hospitals and ATMs. If live search fails, the app shows your manually saved backup places for that category.</p>
+        </div>
+
+        <div class="help-card">
+            <img src="assets/images/timer.png" class="help-icon-img" alt="Safety Timer">
+            <h3>Safety Timer</h3>
+            <p>Start a travel check-in with your destination and usual travel time. If you do not confirm safely after the main timer and 10 extra minutes, SOS goes to your top 4 contacts.</p>
+        </div>
+
+        <div class="help-card">
+            <img src="assets/images/siren.png" class="help-icon-img" alt="Emergency Siren">
+            <h3>Emergency Siren</h3>
+            <p>Tap the Emergency Siren card on the dashboard to instantly start a loud looping siren with a flashing warning screen. Tap the same card again to stop both.</p>
+        </div>
+
+        <div class="help-card">
+            <img src="assets/images/location.png" class="help-icon-img" alt="Quick Helplines">
+            <h3>Quick Helplines</h3>
+            <p>Use the dashboard helpline buttons for fast calling. The app opens your dialer for 112, 100, 1091, 181 and 102.</p>
+        </div>
+
+        <div class="help-card">
+            <img src="assets/images/sos.png" class="help-icon-img" alt="Voice Trigger">
+            <h3>Voice Trigger</h3>
+            <p>Enable voice trigger on the dashboard to listen while the app is open. You can also keep SOS phrases on and siren phrases off, or the other way around.</p>
+        </div>
+
+        <div class="help-card">
+            <img src="assets/images/profile.png" class="help-icon-img" alt="Notes">
+            <h3>Notes</h3>
+            <p>Use Notes beside Change and Help to save quick details like a vehicle number, a location clue or a suspect description directly to your account.</p>
+        </div>
+
+        <div class="help-card">
+            <img src="assets/images/calc.png" class="help-icon-img" alt="Change">
+            <h3>Change</h3>
+            <p>Use Change beside Help to open a normal working calculator screen. Long press the calculator display to return to the dashboard.</p>
+        </div>
+        
+        <div class="help-card">
+            <img src="assets/images/contacts.png" class="help-icon-img" alt="Contacts">
+            <h3>Emergency Contacts</h3>
+            <p>Add emergency contacts, reorder them by priority, and call or message them directly. Priority 1 is treated as your primary contact during SOS.</p>
+        </div>
+        
+        <div class="help-card">
+            <img src="assets/images/add.png" class="help-icon-img" alt="Add Contact">
+            <h3>Add Contact</h3>
+            <p>Save contacts with name, phone, relation and email. These contacts are used for SOS alerts and priority ordering.</p>
+        </div>
+        
+        <div class="help-card">
+            <img src="assets/images/acc.png" class="help-icon-img" alt="Account">
+            <h3>Your Account</h3>
+            <p>Manage your profile, change your profile photo, update fake call customization, log out, or delete your account.</p>
+        </div>
+    </div>
+    
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">? How does SOS work?</div>
+            <div class="faq-answer">When you press SOS, the app starts live tracking, sends alert emails with your location and tracking link, and then tries to call your highest-priority contact.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">? Is my data safe?</div>
+            <div class="faq-answer">Your profile, contacts and saved nearby places are stored in Firebase for your account. Profile photo updates are also saved to your account.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">? Can I use it without internet?</div>
+            <div class="faq-answer">Fake Call and the Change calculator can still work without internet. SOS emails, nearby live places, and Firebase-synced data need internet.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">? How do I add emergency contacts?</div>
+            <div class="faq-answer">Go to Contacts, tap Add New Contact, fill in the details, and save. Then use the arrows in Contacts to set who should be Priority 1, 2, 3 and so on.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? How does Nearby Places work?</div>
+            <div class="faq-answer">The app tries to fetch nearby police stations, hospitals and ATMs using your location. If that fails, it shows the places you saved manually with Google Maps links under the same category. The Police button in the bottom bar takes you straight to the police section.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? How does Safety Timer work?</div>
+            <div class="faq-answer">Enter where you are going and how long you usually take to reach. When that timer ends, the app asks you to check in. If you still do not respond after 10 more minutes, SOS is automatically sent to your top 4 contacts.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? How does Emergency Siren work?</div>
+            <div class="faq-answer">Tap the Emergency Siren card on the dashboard once to start the alarm and flashing warning screen. Tap the same card again, or the stop button on the flashing screen, to stop it.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? How do Quick Helplines work?</div>
+            <div class="faq-answer">Tap any helpline button on the dashboard and the app opens your phone dialer with that number ready to call.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? How does Voice Trigger work?</div>
+            <div class="faq-answer">Turn on Voice Trigger from the dashboard. While the app is open, phrases like "help", "help me", "sos" and "send location" trigger SOS, while phrases like "play sound", "play siren", "siren" and "police sound" start the siren. You can turn SOS phrases or siren phrases on and off separately.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? How do Notes work?</div>
+            <div class="faq-answer">Tap Notes in the header, write any important details, and save them. The notes are stored in your account so you can keep updating them when needed.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? How does Change work?</div>
+            <div class="faq-answer">Tap Change beside Help to open a real calculator screen. Long press the calculator display for about 2 seconds to return to the dashboard.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? How does Fake Call scheduling work?</div>
+            <div class="faq-answer">Open Fake Call, choose 30 seconds, 1 minute or a custom time, then start it. The app returns you to the dashboard and shows the fake incoming call when the timer finishes while you are still inside this app.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? Can I change my profile picture?</div>
+            <div class="faq-answer">Yes. Open Account and tap the profile image. Pick a photo and the app saves a compressed version to your account so it stays available after refresh.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">? What happens when I log out or delete my account?</div>
+            <div class="faq-answer">Log Out signs you out of the app. Delete Account permanently removes your account data and should only be used when you really want to erase it.</div>
+        </div>
+    </div>
+    
+    <div class="feedback-section">
+        <h2>We'd Love Your Feedback!</h2>
+        <p>Help us improve HerSuraksha by sharing your experience</p>
+        
+        <div class="feedback-box">
+            <textarea id="feedbackText" placeholder="Write your feedback, suggestions, or report issues here..." rows="4"></textarea>
+            
+            <div class="rating-container">
+                <p>How would you rate your experience?</p>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">?</span>
+                    <span class="star" data-rating="2">?</span>
+                    <span class="star" data-rating="3">?</span>
+                    <span class="star" data-rating="4">?</span>
+                    <span class="star" data-rating="5">?</span>
+                </div>
+                <span id="selectedRating" class="rating-value"></span>
+            </div>
+            
+            <button id="submitFeedback" class="feedback-btn">Submit Feedback</button>
+            <div id="feedbackMessage" class="feedback-message"></div>
+        </div>
+    </div>
+    
+    <div class="support-section">
+        <h2>Still need help?</h2>
+        <p>Email us at: <a href="mailto:hersuraksha@gmail.com">hersuraksha@gmail.com</a></p>
+        <p>Developed By: Sneha Goyal, Priya, Urvee Pundir, Nandini Singhal</p>
+    </div>
+</div>
+
+<footer class="dashboard-footer">
+    <div class="footer-content">
+        <div class="icon-box" id="homeBtn">
+            <img src="assets/images/home.png" class="footer-icon" alt="Home">
+            <span>Home</span>
+        </div>
+        <div class="icon-box" id="contactsBtn">
+            <img src="assets/images/contacts.png" class="footer-icon" alt="Contacts">
+            <span>Contacts</span>
+        </div>
+        <div class="icon-box" id="addBtn">
+            <img src="assets/images/add.png" class="footer-icon" alt="Add">
+            <span>Add</span>
+        </div>
+        <div class="icon-box" id="locationBtn">
+            <img src="assets/images/location.png" class="footer-icon" alt="Location">
+            <span>Location</span>
+        </div>
+        <div class="icon-box" id="accountBtn">
+            <img src="assets/images/acc.png" class="footer-icon" alt="Account">
+            <span>Account</span>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="js/utils/global-fake-call-watcher.js"></script>
+<script type="module" src="js/pages/help.js"></script>
+</body>
+</html>

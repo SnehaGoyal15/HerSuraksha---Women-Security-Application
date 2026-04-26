@@ -1,0 +1,11 @@
+# Deploy everything
+firebase deploy
+
+# Deploy only hosting (faster)
+firebase deploy --only hosting
+
+# Deploy only Firestore rules
+firebase deploy --only firestore:rules
+
+# Deploy both hosting and rules
+firebase deploy --only hosting,firestore:rules
